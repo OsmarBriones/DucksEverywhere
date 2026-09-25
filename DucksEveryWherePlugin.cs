@@ -3,39 +3,36 @@ using BepInEx.Logging;
 using HarmonyLib;
 using UnityEngine;
 
-namespace DucksEveryWhere
+namespace DucksEveryWhere;
+
+[BepInPlugin(PluginGuid, PluginName, PluginVersion)]
+public class DucksEveryWherePlugin : BaseUnityPlugin
 {
-	[BepInPlugin(PluginGuid, PluginName, PluginVersion)]
-	public class DucksEveryWherePlugin : BaseUnityPlugin
+	public const string PluginGuid = "com.osmar.DucksEveryWhere";
+	public const string PluginName = "DucksEveryWhere";
+	public const string PluginVersion = "1.0.0";
+
+	internal static ManualLogSource Log { get; private set; } = null!;
+	internal Harmony? Harmony { get; private set; }
+
+	private void Awake()
 	{
-		// Se reemplaza com.osmar por el parámetro AuthorId del template.json
-		// y DucksEveryWhere por el nombre del proyecto (sourceName).
-		public const string PluginGuid = "com.osmar.DucksEveryWhere";
-		public const string PluginName = "DucksEveryWhere";
-		public const string PluginVersion = "1.0.0";
+		Log = base.Logger;
 
-		internal Harmony? Harmony { get; set; }
-		internal static new BepInEx.Logging.ManualLogSource Logger { get; private set; } = null!;
+		// Prevent the plugin from being deleted
+		gameObject.transform.parent = null;
+		gameObject.hideFlags = HideFlags.HideAndDontSave;
 
-		private void Awake()
-		{
-			Logger = base.Logger;
+		ConfigurationController.Initialize(Config);
 
-			// Prevent the plugin from being deleted
-			this.gameObject.transform.parent = null;
-			this.gameObject.hideFlags = HideFlags.HideAndDontSave;
+		Harmony = new Harmony(PluginGuid);
+		Harmony.PatchAll();
 
-			ConfigurationController.Initialize(this.Config);
+		Log.LogInfo($"{PluginName} {PluginVersion} loaded!");
+	}
 
-			Harmony = new Harmony(Info.Metadata.GUID);
-			Harmony.PatchAll();
-
-			Logger.LogInfo($"{PluginName} {PluginVersion} loaded!");
-		}
-
-		internal void Unpatch()
-		{
-			Harmony?.UnpatchSelf();
-		}
+	internal void Unpatch()
+	{
+		Harmony?.UnpatchSelf();
 	}
 }

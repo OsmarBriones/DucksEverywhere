@@ -1,27 +1,40 @@
 using BepInEx.Configuration;
-using System;
 
-namespace DucksEveryWhere
+namespace DucksEveryWhere;
+
+internal sealed class ConfigurationController
 {
-	internal class ConfigurationController
+	private static ConfigFile? configFile;
+	private static ConfigEntry<bool>? enabledEntry;
+	private static ConfigEntry<int>? duckCountEntry;
+
+	internal static bool IsEnabled => enabledEntry?.Value ?? true;
+	internal static int DuckCount => duckCountEntry?.Value ?? 8;
+
+	internal static void Initialize(ConfigFile config)
 	{
-		private static ConfigFile? ConfigFile { get; set; }
-		private static ConfigEntry<bool>? Enabled { get; set; }
+		configFile = config;
 
-		internal static void Initialize(ConfigFile config)
-		{
-			ConfigFile = config;
+		enabledEntry = configFile.Bind(
+			"General",
+			"Enabled",
+			true,
+			"Enable or disable this mod."
+		);
 
-			Enabled = ConfigFile.Bind("General", nameof(Enabled), true, "Enable or disable this mod.");
+		duckCountEntry = configFile.Bind(
+			"General",
+			"DuckCount",
+			8,
+			new ConfigDescription("Number of rubber ducks to spawn in the truck on level start.", new AcceptableValueRange<int>(1, 50))
+		);
 
-			ConfigFile.Save();
-		}
+		configFile.Save();
+	}
 
-		internal static void Reload()
-		{
-			ConfigFile?.Reload();
-			ConfigFile?.Save();
-		}
-
+	internal static void Reload()
+	{
+		configFile?.Reload();
+		configFile?.Save();
 	}
 }

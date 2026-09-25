@@ -7,6 +7,8 @@
     <Authors>com.osmar</Authors>
     <Version>1.0.0</Version>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <!-- Suppress nullable warnings originating from external submodule files -->
+    <NoWarn>$(NoWarn);CS8625;CS8603;CS8601</NoWarn>
   </PropertyGroup>
 
   <!-- Add Package Sources -->
@@ -32,12 +34,11 @@
     <EmbeddedResource Remove="external\**" />
     <None Remove="external\**" />
 
-    <!-- When consuming RepoAPI modules (after git submodule add https://github.com/OsmarBriones/RepoAPI.git external/RepoAPI):
+    <!-- RepoAPI submodule modules -->
     <Compile Include="external\RepoAPI\Items\ItemProvider.cs" />
     <Compile Include="external\RepoAPI\Items\ItemKeysProvider.cs" />
     <Compile Include="external\RepoAPI\Items\ItemName.cs" />
     <Compile Include="external\RepoAPI\Game\**\*.cs" />
-    -->
   </ItemGroup>
 
   <!-- Game and Unity References -->

@@ -1,49 +1,50 @@
 # DucksEveryWhere Architecture
 
-This document describes the runtime structure, data flow, and design decisions for this mod.
+This document describes the runtime structure, data flow, and design decisions for `DucksEveryWhere`.
 
 ---
 
 ## High-Level Concept
 
-Briefly summarize what this mod does:
-1. **Trigger / Hook:** What game event or lifecycle point triggers mod logic.
-2. **Authority / Networking:** Specify if logic runs host-only (singleplayer/master client) or on all clients.
-3. **Outcome:** What changes in the game (item spawned, enemy stunned, stats adjusted, etc.).
+1. **Trigger / Hook:** Level start lifecycle hook `EnemyDirector.Start` (Postfix).
+2. **Authority / Networking:** Host-only authority (`SemiFunc.IsMasterClientOrSingleplayer()`). Instantiated room objects are automatically synchronized to all clients via Photon PUN 2.
+3. **Outcome:** Spawns a configurable quantity of rubber ducks (default: 8) inside the truck scattered with randomized offset jitter and rotation.
 
 ---
 
 ## Main Data Flow
 
-### 1. Level Start / Initialization
-- Entry point: `Patches/ReloadOnLevelStart.cs` (Harmony patch on `EnemyDirector.Start`).
-- Checks `SemiFunc.RunIsLevel()` to ensure execution only in playable levels.
-- Refreshes configuration via `ConfigurationController.Reload()`.
-- Resets any per-level state or counters.
+### 1. Plugin Initialization
+- Entry point: `DucksEveryWherePlugin.cs` (`BaseUnityPlugin`).
+- Initializes `ConfigurationController.Initialize(Config)`.
+- Applies Harmony patches using `Harmony.PatchAll()`.
 
-### 2. Gameplay Events & Patches
-- Place each Harmony patch in `Patches/<TargetType>_<TargetMethod>_Patch.cs`.
-- Follow the host-only pattern where applicable:
-  ```csharp
-  if (!SemiFunc.IsMasterClientOrSingleplayer()) return;
-  ```
+### 2. Level Start Hook & Duck Spawning
+- Patch: `Patches/EnemyDirector_Start_Patch.cs` (`EnemyDirector.Start` Postfix).
+- Checks:
+  - `ConfigurationController.IsEnabled`: exits if disabled.
+  - `SemiFunc.RunIsLevel()`: ensures this is an active level (not main menu or shop).
+  - `SemiFunc.IsMasterClientOrSingleplayer()`: ensures only host creates networked items.
+- Locates anchor: `TruckSafetySpawnPoint.instance.transform.position`.
+- Spawns ducks via `RepoAPI.Items.ItemProvider.TrySpawnByKey("Item Rubber Duck", spawnPos, spawnRot, out _)`.
+- Uses horizontal random jitter (±0.6m) and elevation step to prevent physics collision explosions.
 
 ### 3. Shared Library Usage (RepoAPI)
-- If the mod consumes shared logic (spawning items, item keys, reflection helpers), pull only the required modules via git submodule in `external/RepoAPI` and `<Compile Include>` in `.csproj`.
-- Never duplicate generic RepoAPI code locally.
+- Uses `RepoAPI` submodule linked at `external/RepoAPI`.
+- Explicitly compiles `ItemProvider.cs`, `ItemKeysProvider.cs`, `ItemName.cs`, and `Game/**/*.cs`.
+- Follows §6 Modern C# coding standards (zero underscore/Hungarian prefixes).
 
 ---
 
 ## Key Design Decisions & Invariants
 
-- **Standalone build:** This repository builds into a single self-contained DLL (`DucksEveryWhere.dll`).
-- **Configuration reload:** Settings reload cleanly on level transition without requiring a game restart.
+- **Standalone build:** Builds into a single self-contained DLL (`DucksEveryWhere.dll`).
+- **Multiplayer Safety:** Only the host/singleplayer instantiates items via `PhotonNetwork.InstantiateRoomObject` (under `ItemProvider.TrySpawnByKey`), preventing duplicate entities on client machines.
+- **Configurable:** `DuckCount` (1-50, default 8) and `Enabled` (default true) stored in `BepInEx/config/com.osmar.DucksEveryWhere.cfg`.
 
 ---
 
 ## Testing Strategy
 
 Follows the 3-tier testing strategy in `external/RepoKit/REPO_MODS_METHODOLOGY.md` §8:
-1. **Tier 1 (Unit tests):** Decouple pure business logic and test via a companion test project (`dotnet test`).
-2. **Tier 2 (Harmony verification):** Verify that patch targets exist in `Assembly-CSharp.dll` before deploying.
-3. **Tier 3 (In-game smoke test / Optional debug triggers):** Default validation is done simply by launching the game and observing normal gameplay. Custom hotkeys/triggers are strictly optional and off by default, only used when mechanics are rare or difficult to reach naturally.
+- **Tier 3 (In-game smoke test):** Launch the game via Steam or r2modman Debug profile, start a run, and verify that the rubber ducks appear in the truck floor and can be picked up.
