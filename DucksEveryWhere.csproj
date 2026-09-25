@@ -7,8 +7,6 @@
     <Authors>com.osmar</Authors>
     <Version>1.0.0</Version>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <!-- Suppress nullable warnings originating from external submodule files -->
-    <NoWarn>$(NoWarn);CS8625;CS8603;CS8601</NoWarn>
   </PropertyGroup>
 
   <!-- Add Package Sources -->
