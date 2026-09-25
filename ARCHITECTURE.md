@@ -6,7 +6,7 @@ This document describes the runtime structure, data flow, and design decisions f
 
 ## High-Level Concept
 
-1. **Trigger / Hook:** Level start lifecycle hook `EnemyDirector.Start` (Postfix).
+1. **Trigger / Hook:** Level start lifecycle hook `RoundDirector.StartRoundLogic` (Postfix), executed once procedural level generation is fully finished.
 2. **Authority / Networking:** Host-only authority (`SemiFunc.IsMasterClientOrSingleplayer()`). Instantiated room objects are automatically synchronized to all clients via Photon PUN 2.
 3. **Outcome:** Spawns a configurable quantity of rubber ducks (default: 8) inside the truck scattered with randomized offset jitter and rotation.
 
@@ -20,7 +20,7 @@ This document describes the runtime structure, data flow, and design decisions f
 - Applies Harmony patches using `Harmony.PatchAll()`.
 
 ### 2. Level Start Hook & Duck Spawning
-- Patch: `Patches/EnemyDirector_Start_Patch.cs` (`EnemyDirector.Start` Postfix).
+- Patch: `Patches/RoundDirector_StartRoundLogic_Patch.cs` (`RoundDirector.StartRoundLogic` Postfix).
 - Checks:
   - `ConfigurationController.IsEnabled`: exits if disabled.
   - `SemiFunc.RunIsLevel()`: ensures this is an active level (not main menu or shop).

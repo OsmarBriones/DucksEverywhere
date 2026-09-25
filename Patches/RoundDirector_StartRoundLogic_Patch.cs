@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace DucksEveryWhere.Patches;
 
-[HarmonyPatch(typeof(EnemyDirector), "Start")]
-internal static class EnemyDirector_Start_Patch
+[HarmonyPatch(typeof(RoundDirector), "StartRoundLogic")]
+internal static class RoundDirector_StartRoundLogic_Patch
 {
 	[HarmonyPostfix]
 	private static void Postfix()
@@ -19,7 +19,7 @@ internal static class EnemyDirector_Start_Patch
 		if (!SemiFunc.IsMasterClientOrSingleplayer())
 			return;
 
-		var truckPoint = TruckSafetySpawnPoint.instance;
+		var truckPoint = TruckSafetySpawnPoint.instance ?? Object.FindObjectOfType<TruckSafetySpawnPoint>();
 		if (truckPoint == null)
 		{
 			DucksEveryWherePlugin.Log.LogWarning("TruckSafetySpawnPoint instance not found; skipping rubber duck spawning.");

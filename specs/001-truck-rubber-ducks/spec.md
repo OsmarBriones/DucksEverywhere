@@ -20,7 +20,7 @@ As a player starting a level (either singleplayer or hosting multiplayer), when 
 
 **Acceptance Scenarios**:
 
-1. **Given** the mod is enabled, **When** a playable match level starts (`EnemyDirector.Start`), **Then** 8 rubber ducks (`Item Rubber Duck`) spawn on the truck floor near `TruckSafetySpawnPoint`.
+1. **Given** the mod is enabled, **When** a playable match level starts and generation is completed (`RoundDirector.StartRoundLogic`), **Then** 8 rubber ducks (`Item Rubber Duck`) spawn on the truck floor near `TruckSafetySpawnPoint`.
 2. **Given** a multiplayer lobby, **When** the host enters the level, **Then** only the host instantiates the ducks so that Photon replicates them to connected clients without duplicate entities.
 
 ---
@@ -61,7 +61,7 @@ As a player or server host, I want to configure whether the mod is active and ho
 ### Key Entities
 
 - **ConfigurationController**: Manages config entries (`Enabled`, `DuckCount`).
-- **EnemyDirector_Start_Patch**: Harmony postfix patch on `EnemyDirector.Start` triggering duck instantiation if preconditions pass.
+- **RoundDirector_StartRoundLogic_Patch**: Harmony postfix patch on `RoundDirector.StartRoundLogic` triggering duck instantiation once level generation completes.
 
 ## Success Criteria
 

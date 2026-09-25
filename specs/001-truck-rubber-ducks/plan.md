@@ -34,7 +34,7 @@ Implement the `DucksEveryWhere` mod for R.E.P.O. to spawn 8 (configurable) rubbe
 - [x] **III. Modern C# & Zero Legacy Prefixes**:
   - No leading underscores (`config`, `enabledEntry`, `duckCountEntry`).
   - No static prefixes (`instance`, `log`).
-  - Scoping: `internal sealed class ConfigurationController`, `[HarmonyPatch] internal static class EnemyDirector_Start_Patch`.
+  - Scoping: `internal sealed class ConfigurationController`, `[HarmonyPatch] internal static class RoundDirector_StartRoundLogic_Patch`.
 - [x] **IV. Shared Code Hygiene (RepoAPI)**: Uses `RepoAPI.Items.ItemProvider.TrySpawnByKey` via submodule compilation (`<Compile Include>`), no duplicated code.
 - [x] **V. 3-Tier Testing**: Tier 3 smoke testing via Steam / r2modman debug profile.
 
@@ -53,12 +53,12 @@ specs/001-truck-rubber-ducks/
 
 ```text
 DucksEveryWhere/
-├── DucksEveryWhere.csproj              # Updated with RepoAPI compilation items
-├── Plugin.cs                          # BepInPlugin entry point, initializes config & Harmony
-├── ConfigurationController.cs         # Configuration wrapper for Enabled & DuckCount
+├── DucksEveryWhere.csproj                     # Updated with RepoAPI compilation items
+├── DucksEveryWherePlugin.cs                  # BepInPlugin entry point, initializes config & Harmony
+├── ConfigurationController.cs                # Configuration wrapper for Enabled & DuckCount
 ├── Patches/
-│   └── EnemyDirector_Start_Patch.cs   # Harmony postfix on EnemyDirector.Start
-└── ARCHITECTURE.md                    # Updated architectural documentation
+│   └── RoundDirector_StartRoundLogic_Patch.cs # Harmony postfix on RoundDirector.StartRoundLogic
+└── ARCHITECTURE.md                           # Updated architectural documentation
 ```
 
 ## Complexity Tracking

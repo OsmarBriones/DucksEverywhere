@@ -24,8 +24,8 @@
 
 **Goal**: Host spawns 8 rubber ducks in truck on match start, replicated across Photon.
 
-- [x] T004 [US1] Implement `Patches/EnemyDirector_Start_Patch.cs` hooking `EnemyDirector.Start` Postfix with host authority check, `TruckSafetySpawnPoint` positioning, jitter/rotation offsets, and `RepoAPI.Items.ItemProvider.TrySpawnByKey`.
-- [x] T005 [US1] Update `Plugin.cs` to initialize `ConfigurationController`, set up BepInEx logging, and apply Harmony patches.
+- [x] T004 [US1] Implement `Patches/RoundDirector_StartRoundLogic_Patch.cs` hooking `RoundDirector.StartRoundLogic` Postfix (after procedural level generation completes) with host authority check, `TruckSafetySpawnPoint` positioning, jitter/rotation offsets, and `RepoAPI.Items.ItemProvider.TrySpawnByKey`.
+- [x] T005 [US1] Update `DucksEveryWherePlugin.cs` to initialize `ConfigurationController`, set up BepInEx logging, and apply Harmony patches.
 
 ---
 
