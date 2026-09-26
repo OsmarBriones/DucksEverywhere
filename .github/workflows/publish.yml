@@ -27,7 +27,7 @@ jobs:
         shell: pwsh
         run: |
           if (Test-Path "external/RepoKit/skills/package-mod/scripts/package-mod.ps1") {
-            powershell -ExecutionPolicy Bypass -File external/RepoKit/skills/package-mod/scripts/package-mod.ps1 -ModPath . -Configuration Release
+            & external/RepoKit/skills/package-mod/scripts/package-mod.ps1 -ModPath . -Configuration Release
           } else {
             dotnet build -c Release
           }
