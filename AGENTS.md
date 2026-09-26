@@ -26,6 +26,7 @@ for .NET Framework 4.8.
 - Spec Kit (SDD): Spec Kit is pre-configured in `.specify/`. Its constitution at `.specify/memory/constitution.md` automatically enforces RepoKit, host authority, and coding standards. Use `/speckit-specify`, `/speckit-plan`, and `/speckit-tasks` when developing features.
 - Maintain documentation with implementation: update this file, `README.md`,
   `CHANGELOG.md`, and `ARCHITECTURE.md` when runtime or design facts change.
+- Documentation style: In `README.md`, keep features player-facing and non-technical (focus on gameplay experience, avoid engine/code jargon). In Credits and `<Authors>`, always use **Osmar Briones** (`com.osmar` is strictly the technical reverse-DNS identifier).
 
 Before the first edit of every task, synchronize
 `external/RepoKit` once and follow its synchronization gate. Read

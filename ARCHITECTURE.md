@@ -8,7 +8,9 @@ This document describes the runtime structure, data flow, and design decisions f
 
 1. **Trigger / Hook:** Level start lifecycle hook `RoundDirector.StartRoundLogic` (Postfix), executed once procedural level generation is fully finished.
 2. **Authority / Networking:** Host-only authority (`SemiFunc.IsMasterClientOrSingleplayer()`). Instantiated room objects are automatically synchronized to all clients via Photon PUN 2.
-3. **Outcome:** Spawns a configurable quantity of rubber ducks (default: 8) inside the truck scattered with randomized offset jitter and rotation.
+3. **Outcome:** Spawns configurable quantities of rubber ducks based on `SpawnMode`:
+   - Inside the truck near `TruckSafetySpawnPoint` (controlled by `DuckCount`).
+   - Distributed naturally across facility rooms via room placement anchors `ValuableVolume` (controlled by `LevelDuckCount`).
 
 ---
 
@@ -25,9 +27,10 @@ This document describes the runtime structure, data flow, and design decisions f
   - `ConfigurationController.IsEnabled`: exits if disabled.
   - `SemiFunc.RunIsLevel()`: ensures this is an active level (not main menu or shop).
   - `SemiFunc.IsMasterClientOrSingleplayer()`: ensures only host creates networked items.
-- Locates anchor: `TruckSafetySpawnPoint.instance.transform.position`.
-- Spawns ducks via `RepoAPI.Items.ItemProvider.TrySpawnByKey("Item Rubber Duck", spawnPos, spawnRot, out _)`.
-- Uses horizontal random jitter (±0.6m) and elevation step to prevent physics collision explosions.
+- Evaluates `ConfigurationController.SpawnMode`:
+  - `TruckOnly` / `Both`: Spawns `DuckCount` ducks around `TruckSafetySpawnPoint.instance.transform.position` with horizontal random jitter (±0.6m) and elevation steps.
+  - `LevelOnly` / `Both`: Finds all room object placement anchors (`ValuableVolume`), shuffles them across modules, and spawns `LevelDuckCount` ducks cleanly on room tables, desks, and surfaces via `RepoAPI.Items.ItemProvider.TrySpawnByKey("Item Rubber Duck", spawnPos, spawnRot, out _)`.
+  - Fallback: Uses `Module` centers if no `ValuableVolume` components exist.
 
 ### 3. Shared Library Usage (RepoAPI)
 - Uses `RepoAPI` submodule linked at `external/RepoAPI`.
@@ -40,7 +43,12 @@ This document describes the runtime structure, data flow, and design decisions f
 
 - **Standalone build:** Builds into a single self-contained DLL (`DucksEverywhere.dll`).
 - **Multiplayer Safety:** Only the host/singleplayer instantiates items via `PhotonNetwork.InstantiateRoomObject` (under `ItemProvider.TrySpawnByKey`), preventing duplicate entities on client machines.
-- **Configurable:** `DuckCount` (1-50, default 8) and `Enabled` (default true) stored in `BepInEx/config/com.osmar.DucksEverywhere.cfg`.
+- **Configurable:**
+  - `Enabled` (default true)
+  - `SpawnMode` (`Both`, `TruckOnly`, `LevelOnly`; default `Both`)
+  - `TruckDuckCount` (1-50, default 15)
+  - `LevelDuckCount` (1-100, default 30)
+  Stored in `BepInEx/config/com.osmar.DucksEverywhere.cfg`.
 
 ---
 
