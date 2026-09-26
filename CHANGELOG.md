@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.0.4
+- Cleaned up and reorganized version history notes.
+
 ## 1.0.3
 - Refined package description to: "Only Host, clients don't need it."
 

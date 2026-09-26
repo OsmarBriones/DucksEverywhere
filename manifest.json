@@ -1,6 +1,6 @@
 ﻿{
     "name":  "DucksEverywhere",
-    "version_number":  "1.0.3",
+    "version_number":  "1.0.4",
     "website_url":  "https://github.com/OsmarBriones/DucksEverywhere",
     "description":  "Spawns rubber ducks in the truck and facility on level load. Fully configurable. Only Host, clients don\u0027t need it.",
     "dependencies":  [
