@@ -1,13 +1,13 @@
 # DucksEverywhere
 
-Spawns rubber ducks inside the starting truck and across the entire facility whenever you start a match in R.E.P.O.
+Spawns rubber ducks inside the starting truck and across facility rooms whenever you start a match in R.E.P.O.
 
-Only the host needs to have this mod installed — ducks are synchronized to all connected players via Photon.
+**Only Host, clients don't need it.** Connected players see and interact with ducks automatically.
 
 ## Features
 - Automatically spawns rubber ducks on level start.
 - **Multiple spawn locations**: choose between the truck, throughout facility rooms, or both!
-- Host-only authority: fully synchronized across multiplayer lobbies without duplicate spawns.
+- **Only Host, clients don't need it**: ducks synchronize across all players automatically with no extra install required for clients.
 - Highly configurable.
 
 ## Requirements

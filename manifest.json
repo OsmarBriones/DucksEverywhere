@@ -1,9 +1,9 @@
-﻿{
-    "name":  "DucksEverywhere",
-    "version_number":  "1.0.1",
-    "website_url":  "https://github.com/OsmarBriones/DucksEverywhere",
-    "description":  "Spawns rubber ducks inside the starting truck and across facility rooms on level load. Fully configurable spawn modes and counts. Host-only mod.",
-    "dependencies":  [
-                         "BepInEx-BepInExPack-5.4.2304"
-                     ]
+{
+  "name": "DucksEverywhere",
+  "version_number": "1.0.1",
+  "website_url": "https://github.com/OsmarBriones/DucksEverywhere",
+  "description": "Spawns rubber ducks in the truck and facility on level load. Fully configurable. Only Host, clients don't need it.",
+  "dependencies": [
+    "BepInEx-BepInExPack-5.4.2304"
+  ]
 }
