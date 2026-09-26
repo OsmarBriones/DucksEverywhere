@@ -1,5 +1,7 @@
 # Changelog
 
+## [Unreleased]
+
 ## 1.0.4
 - Cleaned up and reorganized version history notes.
 

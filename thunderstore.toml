@@ -4,7 +4,7 @@ schemaVersion = "0.0.1"
 [package]
 namespace = "OsmarBriones"
 name = "DucksEverywhere"
-versionNumber = "1.0.3"
+versionNumber = "1.0.4"
 description = "Spawns rubber ducks in the truck and facility on level load. Fully configurable. Only Host, clients don't need it."
 websiteUrl = "https://github.com/OsmarBriones/DucksEverywhere"
 containsNsfwContent = false
