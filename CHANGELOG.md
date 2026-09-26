@@ -1,15 +1,14 @@
 # Changelog
 
 ## 1.0.3
-- Clarified multiplayer compatibility in description: "Only Host, clients don't need it."
-- Added official GitHub Issues reporting channel.
-- Minor package metadata improvements.
+- Refined package description to: "Only Host, clients don't need it."
 
 ## 1.0.2
-- Clarified host-only wording in mod description.
+- Updated package description and multiplayer notes.
 
 ## 1.0.1
-- Added official repository and support links.
+- Added official GitHub Issues reporting link to README.
+- Added repository website URL to package manifest.
 
 ## 1.0.0
 - Initial release.
