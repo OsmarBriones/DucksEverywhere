@@ -1,4 +1,4 @@
-using BepInEx;
+﻿using BepInEx;
 using BepInEx.Logging;
 using HarmonyLib;
 using UnityEngine;
@@ -10,7 +10,7 @@ public class DucksEverywherePlugin : BaseUnityPlugin
 {
 	public const string PluginGuid = "com.osmar.DucksEverywhere";
 	public const string PluginName = "DucksEverywhere";
-	public const string PluginVersion = "1.0.0";
+	public const string PluginVersion = "1.0.1";
 
 	internal static ManualLogSource Log { get; private set; } = null!;
 	internal Harmony? Harmony { get; private set; }

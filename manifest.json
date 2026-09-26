@@ -1,6 +1,6 @@
 ﻿{
     "name":  "DucksEverywhere",
-    "version_number":  "1.0.0",
+    "version_number":  "1.0.1",
     "website_url":  "https://github.com/OsmarBriones/DucksEverywhere",
     "description":  "Spawns rubber ducks inside the starting truck and across facility rooms on level load. Fully configurable spawn modes and counts. Host-only mod.",
     "dependencies":  [
