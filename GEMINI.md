@@ -1,3 +1,3 @@
-# DucksEveryWhere Gemini entry point
+# DucksEverywhere Gemini entry point
 
 @./AGENTS.md

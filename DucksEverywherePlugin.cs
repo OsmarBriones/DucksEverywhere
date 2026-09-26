@@ -3,13 +3,13 @@ using BepInEx.Logging;
 using HarmonyLib;
 using UnityEngine;
 
-namespace DucksEveryWhere;
+namespace DucksEverywhere;
 
 [BepInPlugin(PluginGuid, PluginName, PluginVersion)]
-public class DucksEveryWherePlugin : BaseUnityPlugin
+public class DucksEverywherePlugin : BaseUnityPlugin
 {
-	public const string PluginGuid = "com.osmar.DucksEveryWhere";
-	public const string PluginName = "DucksEveryWhere";
+	public const string PluginGuid = "com.osmar.DucksEverywhere";
+	public const string PluginName = "DucksEverywhere";
 	public const string PluginVersion = "1.0.0";
 
 	internal static ManualLogSource Log { get; private set; } = null!;

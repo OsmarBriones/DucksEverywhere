@@ -1,3 +1,3 @@
-# DucksEveryWhere Claude Code entry point
+# DucksEverywhere Claude Code entry point
 
 Read [AGENTS.md](AGENTS.md), the canonical local context for this repository.

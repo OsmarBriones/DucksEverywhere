@@ -1,4 +1,4 @@
-# DucksEveryWhere Constitution
+# DucksEverywhere Constitution
 
 This constitution establishes the governing principles for all specifications, architectural plans, and implementations in this repository.
 

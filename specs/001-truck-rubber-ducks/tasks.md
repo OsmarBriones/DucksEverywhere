@@ -7,7 +7,7 @@
 
 **Purpose**: Project build configuration and cleanup
 
-- [x] T001 Update `DucksEveryWhere.csproj` to compile required `RepoAPI` submodule files (`ItemProvider.cs`, `ItemKeysProvider.cs`, `ItemName.cs`, `Game/**/*.cs`).
+- [x] T001 Update `DucksEverywhere.csproj` to compile required `RepoAPI` submodule files (`ItemProvider.cs`, `ItemKeysProvider.cs`, `ItemName.cs`, `Game/**/*.cs`).
 - [x] T002 Remove template placeholder patch `Patches/ReloadOnLevelStart.cs`.
 
 ---
@@ -25,7 +25,7 @@
 **Goal**: Host spawns 8 rubber ducks in truck on match start, replicated across Photon.
 
 - [x] T004 [US1] Implement `Patches/RoundDirector_StartRoundLogic_Patch.cs` hooking `RoundDirector.StartRoundLogic` Postfix (after procedural level generation completes) with host authority check, `TruckSafetySpawnPoint` positioning, jitter/rotation offsets, and `RepoAPI.Items.ItemProvider.TrySpawnByKey`.
-- [x] T005 [US1] Update `DucksEveryWherePlugin.cs` to initialize `ConfigurationController`, set up BepInEx logging, and apply Harmony patches.
+- [x] T005 [US1] Update `DucksEverywherePlugin.cs` to initialize `ConfigurationController`, set up BepInEx logging, and apply Harmony patches.
 
 ---
 
@@ -33,6 +33,6 @@
 
 **Purpose**: Quality assurance, verification, and documentation updates per `RULE[user_global]`.
 
-- [x] T006 Compile project via `dotnet build DucksEveryWhere.csproj` and ensure 0 warnings and 0 errors.
+- [x] T006 Compile project via `dotnet build DucksEverywhere.csproj` and ensure 0 warnings and 0 errors.
 - [x] T007 [P] Update `ARCHITECTURE.md`, `README.md`, and `CHANGELOG.md` with feature architecture and release notes.
-- [x] T008 Verify deployment of compiled `DucksEveryWhere.dll` to Steam and r2modman plugin directories.
+- [x] T008 Verify deployment of compiled `DucksEverywhere.dll` to Steam and r2modman plugin directories.

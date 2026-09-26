@@ -1,6 +1,6 @@
 using BepInEx.Configuration;
 
-namespace DucksEveryWhere;
+namespace DucksEverywhere;
 
 internal sealed class ConfigurationController
 {

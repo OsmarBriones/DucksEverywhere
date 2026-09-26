@@ -2,7 +2,7 @@ using HarmonyLib;
 using RepoAPI.Items;
 using UnityEngine;
 
-namespace DucksEveryWhere.Patches;
+namespace DucksEverywhere.Patches;
 
 [HarmonyPatch(typeof(RoundDirector), "StartRoundLogic")]
 internal static class RoundDirector_StartRoundLogic_Patch
@@ -22,14 +22,14 @@ internal static class RoundDirector_StartRoundLogic_Patch
 		var truckPoint = TruckSafetySpawnPoint.instance ?? Object.FindObjectOfType<TruckSafetySpawnPoint>();
 		if (truckPoint == null)
 		{
-			DucksEveryWherePlugin.Log.LogWarning("TruckSafetySpawnPoint instance not found; skipping rubber duck spawning.");
+			DucksEverywherePlugin.Log.LogWarning("TruckSafetySpawnPoint instance not found; skipping rubber duck spawning.");
 			return;
 		}
 
 		var center = truckPoint.transform.position;
 		var duckCount = ConfigurationController.DuckCount;
 
-		DucksEveryWherePlugin.Log.LogInfo($"Spawning {duckCount} rubber ducks in the truck...");
+		DucksEverywherePlugin.Log.LogInfo($"Spawning {duckCount} rubber ducks in the truck...");
 
 		for (var i = 0; i < duckCount; i++)
 		{
@@ -43,10 +43,10 @@ internal static class RoundDirector_StartRoundLogic_Patch
 
 			if (!ItemProvider.TrySpawnByKey(ItemName.RubberDuck.GetGameKey(), spawnPos, spawnRot, out _))
 			{
-				DucksEveryWherePlugin.Log.LogWarning($"Failed to spawn rubber duck index {i}.");
+				DucksEverywherePlugin.Log.LogWarning($"Failed to spawn rubber duck index {i}.");
 			}
 		}
 
-		DucksEveryWherePlugin.Log.LogInfo($"Finished spawning {duckCount} rubber ducks in the truck.");
+		DucksEverywherePlugin.Log.LogInfo($"Finished spawning {duckCount} rubber ducks in the truck.");
 	}
 }

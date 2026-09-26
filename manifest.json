@@ -1,7 +1,7 @@
 {
-  "name": "DucksEveryWhere",
+  "name": "DucksEverywhere",
   "version_number": "1.0.0",
-  "description": "DucksEveryWhere. Fully configurable. Only the host needs to have it.",
+  "description": "DucksEverywhere. Fully configurable. Only the host needs to have it.",
   "dependencies": [
 	"BepInEx-BepInExPack-5.4.2304"
   ]

@@ -1,6 +1,6 @@
-# DucksEveryWhere Architecture
+# DucksEverywhere Architecture
 
-This document describes the runtime structure, data flow, and design decisions for `DucksEveryWhere`.
+This document describes the runtime structure, data flow, and design decisions for `DucksEverywhere`.
 
 ---
 
@@ -15,7 +15,7 @@ This document describes the runtime structure, data flow, and design decisions f
 ## Main Data Flow
 
 ### 1. Plugin Initialization
-- Entry point: `DucksEveryWherePlugin.cs` (`BaseUnityPlugin`).
+- Entry point: `DucksEverywherePlugin.cs` (`BaseUnityPlugin`).
 - Initializes `ConfigurationController.Initialize(Config)`.
 - Applies Harmony patches using `Harmony.PatchAll()`.
 
@@ -38,9 +38,9 @@ This document describes the runtime structure, data flow, and design decisions f
 
 ## Key Design Decisions & Invariants
 
-- **Standalone build:** Builds into a single self-contained DLL (`DucksEveryWhere.dll`).
+- **Standalone build:** Builds into a single self-contained DLL (`DucksEverywhere.dll`).
 - **Multiplayer Safety:** Only the host/singleplayer instantiates items via `PhotonNetwork.InstantiateRoomObject` (under `ItemProvider.TrySpawnByKey`), preventing duplicate entities on client machines.
-- **Configurable:** `DuckCount` (1-50, default 8) and `Enabled` (default true) stored in `BepInEx/config/com.osmar.DucksEveryWhere.cfg`.
+- **Configurable:** `DuckCount` (1-50, default 8) and `Enabled` (default true) stored in `BepInEx/config/com.osmar.DucksEverywhere.cfg`.
 
 ---
 

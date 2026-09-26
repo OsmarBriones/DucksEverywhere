@@ -1,14 +1,14 @@
-# DucksEveryWhere — Local Agent Context
+# DucksEverywhere — Local Agent Context
 
 This is an independent BepInEx 5.x mod repository for R.E.P.O. Its entry
-point is `DucksEveryWherePlugin.cs`, and it builds `DucksEveryWhere.dll`
+point is `DucksEverywherePlugin.cs`, and it builds `DucksEverywhere.dll`
 for .NET Framework 4.8.
 
 ## Working rules
 
 - This repository must remain usable after a normal clone. Do not require its
   parent workspace for normal builds or documentation.
-- Build with `dotnet build DucksEveryWhere.csproj`. The post-build configuration
+- Build with `dotnet build DucksEverywhere.csproj`. The post-build configuration
   deploys to the game Steam plugins folder and local r2modman Debug profile.
 - Configuration and paths:
   - Game paths and target framework are configured in `Directory.Build.props`.

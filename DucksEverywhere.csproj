@@ -2,8 +2,8 @@
 
   <!-- Shared TargetFramework/LangVersion/Nullable/game paths come from Directory.Build.props -->
   <PropertyGroup>
-    <RootNamespace>DucksEveryWhere</RootNamespace>
-    <AssemblyName>DucksEveryWhere</AssemblyName>
+    <RootNamespace>DucksEverywhere</RootNamespace>
+    <AssemblyName>DucksEverywhere</AssemblyName>
     <Authors>com.osmar</Authors>
     <Version>1.0.0</Version>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>

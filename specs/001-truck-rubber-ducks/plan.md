@@ -1,12 +1,12 @@
 # Implementation Plan: Truck Rubber Ducks
 
-**Branch**: `001-truck-rubber-ducks` | **Date**: 2026-09-25 | **Spec**: [specs/001-truck-rubber-ducks/spec.md](file:///c:/Users/PRIDE%20CERBERO/Documents/Osmar/vida/proyectos/REPO_Mods/DucksEveryWhere/specs/001-truck-rubber-ducks/spec.md)
+**Branch**: `001-truck-rubber-ducks` | **Date**: 2026-09-25 | **Spec**: [specs/001-truck-rubber-ducks/spec.md](file:///c:/Users/PRIDE%20CERBERO/Documents/Osmar/vida/proyectos/REPO_Mods/DucksEverywhere/specs/001-truck-rubber-ducks/spec.md)
 
 **Input**: Feature specification from `specs/001-truck-rubber-ducks/spec.md`
 
 ## Summary
 
-Implement the `DucksEveryWhere` mod for R.E.P.O. to spawn 8 (configurable) rubber duck items inside the truck when starting a level. Spawning is performed solely by the host (`SemiFunc.IsMasterClientOrSingleplayer()`) to replicate across Photon without duplicates. Positioning uses `TruckSafetySpawnPoint.instance.transform.position` with randomized offset jitter and rotation to prevent physics clipping.
+Implement the `DucksEverywhere` mod for R.E.P.O. to spawn 8 (configurable) rubber duck items inside the truck when starting a level. Spawning is performed solely by the host (`SemiFunc.IsMasterClientOrSingleplayer()`) to replicate across Photon without duplicates. Positioning uses `TruckSafetySpawnPoint.instance.transform.position` with randomized offset jitter and rotation to prevent physics clipping.
 
 ## Technical Context
 
@@ -52,9 +52,9 @@ specs/001-truck-rubber-ducks/
 ### Source Code
 
 ```text
-DucksEveryWhere/
-├── DucksEveryWhere.csproj                     # Updated with RepoAPI compilation items
-├── DucksEveryWherePlugin.cs                  # BepInPlugin entry point, initializes config & Harmony
+DucksEverywhere/
+├── DucksEverywhere.csproj                     # Updated with RepoAPI compilation items
+├── DucksEverywherePlugin.cs                  # BepInPlugin entry point, initializes config & Harmony
 ├── ConfigurationController.cs                # Configuration wrapper for Enabled & DuckCount
 ├── Patches/
 │   └── RoundDirector_StartRoundLogic_Patch.cs # Harmony postfix on RoundDirector.StartRoundLogic
